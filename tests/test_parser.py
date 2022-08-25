@@ -99,12 +99,12 @@ def test_22_byte_update():
             DeviceKey(key="humidity", device_id=None): SensorValue(
                 device_key=DeviceKey(key="humidity", device_id=None),
                 name="Humidity",
-                native_value=26.4375,
+                native_value=26.44,
             ),
             DeviceKey(key="voltage", device_id=None): SensorValue(
                 device_key=DeviceKey(key="voltage", device_id=None),
                 name="Voltage",
-                native_value=0.101,
+                native_value=0.10,
             ),
             DeviceKey(key="temperature", device_id=None): SensorValue(
                 device_key=DeviceKey(key="temperature", device_id=None),

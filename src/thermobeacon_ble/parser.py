@@ -60,6 +60,7 @@ class ThermoBeaconBluetoothDeviceData(BluetoothData):
         device_id = data[0]
         device_type = DEVICE_TYPES[device_id]
         name = device_type.name
+        self.set_precision(2)
         self.set_device_type(device_id)
         self.set_title(f"{name} {short_address(service_info.address)}")
         self.set_device_name(f"{name} {short_address(service_info.address)}")
