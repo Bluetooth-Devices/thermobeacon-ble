@@ -1,7 +1,7 @@
 """Parser for ThermoBeacon BLE advertisements.
 
 This file is shamelessly copied from the following repository:
-https://github.com/Ernst79/bleparser/blob/c42ae922e1abed2720c7fac993777e1bd59c0c93/package/bleparser/thermobeacon.py
+https://github.com/Ernst79/bleparser/blob/c42ae922e1abed2720c7fac993777e1bd59c0c93/package/bleparser/thermoplus.py
 
 MIT License applies.
 """
@@ -11,6 +11,7 @@ import logging
 from dataclasses import dataclass
 from struct import unpack
 
+from bluetooth_data_tools import short_address
 from bluetooth_sensor_state_data import BluetoothData
 from home_assistant_bluetooth import BluetoothServiceInfo
 from sensor_state_data import BinarySensorDeviceClass, SensorLibrary
@@ -40,12 +41,6 @@ DEVICE_TYPES = {
 
 
 SERVICE_DATA_UUID = "0000fdcd-0000-1000-8000-00805f9b34fb"
-
-
-def short_address(address: str) -> str:
-    """Convert a Bluetooth address to a short address."""
-    split_address = address.replace("-", ":").split(":")
-    return f"{split_address[-2].upper()}{split_address[-1].upper()}"[-4:]
 
 
 class ThermoBeaconBluetoothDeviceData(BluetoothData):
