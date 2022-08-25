@@ -47,7 +47,7 @@ class ThermoBeaconBluetoothDeviceData(BluetoothData):
         if not MFR_IDS.intersection(service_info.manufacturer_data):
             return
         changed_manufacturer_data = self.changed_manufacturer_data(service_info)
-        if changed_manufacturer_data is None:
+        if not changed_manufacturer_data:
             return
         last_id = list(changed_manufacturer_data)[-1]
         data = (
@@ -70,11 +70,12 @@ class ThermoBeaconBluetoothDeviceData(BluetoothData):
     def _process_update(self, data: bytes) -> None:
         """Update from BLE advertisement data."""
         _LOGGER.debug("Parsing ThermoBeacon BLE advertisement data: %s", data)
-        if len(data) != 22:
+        if len(data) != 20:
             return
 
         button_pushed = data[3] & 0x80
-        xvalue = data[12:18]
+        xvalue = data[10:16]
+
         (volt, temp, humi) = unpack("<HhH", xvalue)
 
         if volt >= 3000:
