@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.3.0 (2022-08-25)
+### Feature
+* Implement rounding ([#4](https://github.com/Bluetooth-Devices/thermobeacon-ble/issues/4)) ([`7a534ee`](https://github.com/Bluetooth-Devices/thermobeacon-ble/commit/7a534ee0f5fd930113c5f95e30807dafe87e5e48))
+
 ## v0.2.0 (2022-08-25)
 ### Feature
 * Init parser ([#3](https://github.com/Bluetooth-Devices/thermobeacon-ble/issues/3)) ([`a4b521a`](https://github.com/Bluetooth-Devices/thermobeacon-ble/commit/a4b521ab737408b1633812a4e0b6015f0ee7ce00))
