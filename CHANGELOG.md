@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.3.1 (2022-08-25)
+### Fix
+* Data alignment ([#5](https://github.com/Bluetooth-Devices/thermobeacon-ble/issues/5)) ([`12cac30`](https://github.com/Bluetooth-Devices/thermobeacon-ble/commit/12cac307f7dd58bd2964b2e28d0747e5397ff1ee))
+
 ## v0.3.0 (2022-08-25)
 ### Feature
 * Implement rounding ([#4](https://github.com/Bluetooth-Devices/thermobeacon-ble/issues/4)) ([`7a534ee`](https://github.com/Bluetooth-Devices/thermobeacon-ble/commit/7a534ee0f5fd930113c5f95e30807dafe87e5e48))
