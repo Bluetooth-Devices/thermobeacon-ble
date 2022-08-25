@@ -43,26 +43,27 @@ MFR_22 = BluetoothServiceInfo(
 )
 
 
-def test_with_20_byte_update():
-    parser = ThermoBeaconBluetoothDeviceData()
-    parser.supported(MFR_20) is True
-    assert parser.title == "Lanyard/mini hygrometer EEFF"
-
-
-def test_supported_set_the_title():
+def test_with_22_byte_update():
     parser = ThermoBeaconBluetoothDeviceData()
     parser.supported(MFR_22) is True
     assert parser.title == "Smart hygrometer EEFF"
 
 
-def test_22_byte_update():
+def test_supported_set_the_title():
     parser = ThermoBeaconBluetoothDeviceData()
-    assert parser.update(MFR_22) == SensorUpdate(
-        title="Smart hygrometer EEFF",
+    parser.supported(MFR_20) is True
+    assert parser.title == "Lanyard/mini hygrometer EEFF"
+
+
+def test_20_byte_update():
+    parser = ThermoBeaconBluetoothDeviceData()
+    update = parser.update(MFR_20)
+    assert update == SensorUpdate(
+        title="Lanyard/mini hygrometer EEFF",
         devices={
             None: SensorDeviceInfo(
-                name="Smart hygrometer EEFF",
-                model=21,
+                name="Lanyard/mini hygrometer EEFF",
+                model=16,
                 manufacturer="ThermoBeacon",
                 sw_version=None,
                 hw_version=None,
@@ -99,22 +100,22 @@ def test_22_byte_update():
             DeviceKey(key="humidity", device_id=None): SensorValue(
                 device_key=DeviceKey(key="humidity", device_id=None),
                 name="Humidity",
-                native_value=26.44,
+                native_value=43.38,
             ),
             DeviceKey(key="voltage", device_id=None): SensorValue(
                 device_key=DeviceKey(key="voltage", device_id=None),
                 name="Voltage",
-                native_value=0.10,
+                native_value=3.3,
             ),
             DeviceKey(key="temperature", device_id=None): SensorValue(
                 device_key=DeviceKey(key="temperature", device_id=None),
                 name="Temperature",
-                native_value=0.0,
+                native_value=24.0,
             ),
             DeviceKey(key="battery", device_id=None): SensorValue(
                 device_key=DeviceKey(key="battery", device_id=None),
                 name="Battery",
-                native_value=0,
+                native_value=100,
             ),
             DeviceKey(key="signal_strength", device_id=None): SensorValue(
                 device_key=DeviceKey(key="signal_strength", device_id=None),
