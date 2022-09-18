@@ -43,6 +43,19 @@ MFR_22 = BluetoothServiceInfo(
 )
 
 
+BAD_DATA = BluetoothServiceInfo(
+    name="ThermoBeacon",
+    address="aa:bb:cc:dd:ee:ff",
+    rssi=-60,
+    service_data={},
+    manufacturer_data={
+        16: b"a\x00\x16\x00\x00\xac\xfa/\x0b&\x01G\x03\xa7\xe7\x12\x00\xc0"
+    },
+    service_uuids=["0000fff0-0000-1000-8000-00805f9b34fb"],
+    source="local",
+)
+
+
 def test_with_22_byte_update():
     parser = ThermoBeaconBluetoothDeviceData()
     parser.supported(MFR_22) is True
@@ -136,4 +149,37 @@ def test_20_byte_update():
                 native_value=False,
             )
         },
+    )
+
+
+def test_bad_data_ignored():
+    parser = ThermoBeaconBluetoothDeviceData()
+    update = parser.update(BAD_DATA)
+    assert update == SensorUpdate(
+        title="Lanyard/mini hygrometer EEFF",
+        devices={
+            None: SensorDeviceInfo(
+                name="Lanyard/mini hygrometer " "EEFF",
+                model=16,
+                manufacturer="ThermoBeacon",
+                sw_version=None,
+                hw_version=None,
+            )
+        },
+        entity_descriptions={
+            DeviceKey(key="signal_strength", device_id=None): SensorDescription(
+                device_key=DeviceKey(key="signal_strength", device_id=None),
+                device_class=SensorDeviceClass.SIGNAL_STRENGTH,
+                native_unit_of_measurement=Units.SIGNAL_STRENGTH_DECIBELS_MILLIWATT,
+            )
+        },
+        entity_values={
+            DeviceKey(key="signal_strength", device_id=None): SensorValue(
+                device_key=DeviceKey(key="signal_strength", device_id=None),
+                name="Signal " "Strength",
+                native_value=-60,
+            )
+        },
+        binary_entity_descriptions={},
+        binary_entity_values={},
     )
