@@ -76,7 +76,12 @@ class ThermoBeaconBluetoothDeviceData(BluetoothData):
         button_pushed = data[3] & 0x80
         xvalue = data[10:16]
 
-        (volt, temp, humi) = unpack("<HhH", xvalue)
+        (volt, temp16, humi16) = unpack("<HhH", xvalue)
+        temp = temp16 / 16
+        humi = humi16 / 16
+
+        if temp > 100 or humi > 100:
+            return
 
         if volt >= 3000:
             batt = 100
@@ -90,8 +95,8 @@ class ThermoBeaconBluetoothDeviceData(BluetoothData):
             batt = 0
 
         self.update_predefined_sensor(SensorLibrary.BATTERY__PERCENTAGE, batt)
-        self.update_predefined_sensor(SensorLibrary.TEMPERATURE__CELSIUS, temp / 16)
-        self.update_predefined_sensor(SensorLibrary.HUMIDITY__PERCENTAGE, humi / 16)
+        self.update_predefined_sensor(SensorLibrary.TEMPERATURE__CELSIUS, temp)
+        self.update_predefined_sensor(SensorLibrary.HUMIDITY__PERCENTAGE, humi)
         self.update_predefined_sensor(
             SensorLibrary.VOLTAGE__ELECTRIC_POTENTIAL_VOLT, volt / 1000
         )
