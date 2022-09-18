@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.3.2 (2022-09-18)
+### Fix
+* Ignore garbage data ([#6](https://github.com/Bluetooth-Devices/thermobeacon-ble/issues/6)) ([`808da03`](https://github.com/Bluetooth-Devices/thermobeacon-ble/commit/808da0307bf9ec8a10bbe35a3c605f7c3dac0c3a))
+
 ## v0.3.1 (2022-08-25)
 ### Fix
 * Data alignment ([#5](https://github.com/Bluetooth-Devices/thermobeacon-ble/issues/5)) ([`12cac30`](https://github.com/Bluetooth-Devices/thermobeacon-ble/commit/12cac307f7dd58bd2964b2e28d0747e5397ff1ee))

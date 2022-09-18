@@ -15,7 +15,7 @@ from sensor_state_data import (
 
 from .parser import ThermoBeaconBluetoothDeviceData
 
-__version__ = "0.3.1"
+__version__ = "0.3.2"
 
 __all__ = [
     "ThermoBeaconBluetoothDeviceData",
