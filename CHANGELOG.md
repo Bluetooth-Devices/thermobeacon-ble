@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.4.0 (2022-11-13)
+### Feature
+* Add support for device 0x18 ([#8](https://github.com/Bluetooth-Devices/thermobeacon-ble/issues/8)) ([`7599842`](https://github.com/Bluetooth-Devices/thermobeacon-ble/commit/7599842522f845a2a39e3ec69bc9d1d7901c9044))
+
 ## v0.3.2 (2022-09-18)
 ### Fix
 * Ignore garbage data ([#6](https://github.com/Bluetooth-Devices/thermobeacon-ble/issues/6)) ([`808da03`](https://github.com/Bluetooth-Devices/thermobeacon-ble/commit/808da0307bf9ec8a10bbe35a3c605f7c3dac0c3a))
