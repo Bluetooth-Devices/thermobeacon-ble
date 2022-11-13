@@ -42,7 +42,17 @@ MFR_22 = BluetoothServiceInfo(
     source="local",
 )
 
-
+MFR_24 = BluetoothServiceInfo(
+    name="ThermoBeacon",
+    address="aa:bb:cc:dd:ee:ff",
+    rssi=-60,
+    service_data={},
+    manufacturer_data={
+        24: b"\x00\x00\xf0\x05\x00\x00\xd7n\xbe\x01e\x00\x00\x00\xa7\x01\x00\x00\x00\x00"
+    },
+    service_uuids=["0000fff0-0000-1000-8000-00805f9b34fb"],
+    source="local",
+)
 BAD_DATA = BluetoothServiceInfo(
     name="ThermoBeacon",
     address="aa:bb:cc:dd:ee:ff",
@@ -183,3 +193,9 @@ def test_bad_data_ignored():
         binary_entity_descriptions={},
         binary_entity_values={},
     )
+
+
+def test_device_0x18():
+    parser = ThermoBeaconBluetoothDeviceData()
+    parser.supported(MFR_24) is True
+    assert parser.title == "Smart hygrometer EEFF"
