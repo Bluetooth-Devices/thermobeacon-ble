@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.6.0 (2022-12-29)
+### Feature
+* Add mapping for id 27 ([#10](https://github.com/Bluetooth-Devices/thermobeacon-ble/issues/10)) ([`9e64a79`](https://github.com/Bluetooth-Devices/thermobeacon-ble/commit/9e64a79f733c05ca469791943b0411a1fcec45be))
+
 ## v0.5.0 (2022-12-29)
 ### Feature
 * Add python 3.11 support ([#9](https://github.com/Bluetooth-Devices/thermobeacon-ble/issues/9)) ([`1c997d1`](https://github.com/Bluetooth-Devices/thermobeacon-ble/commit/1c997d101961aaaadedd6be2a298d0fd3385944e))
