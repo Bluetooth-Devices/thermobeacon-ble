@@ -31,6 +31,7 @@ DEVICE_TYPES = {
     0x11: ThermoBeaconDevice("17", "Smart hygrometer"),
     0x15: ThermoBeaconDevice("21", "Smart hygrometer"),
     0x18: ThermoBeaconDevice("24", "Smart hygrometer"),
+    0x1B: ThermoBeaconDevice("27", "Smart hygrometer"),
 }
 MFR_IDS = set(DEVICE_TYPES)
 
