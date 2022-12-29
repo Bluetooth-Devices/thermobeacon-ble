@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.5.0 (2022-12-29)
+### Feature
+* Add python 3.11 support ([#9](https://github.com/Bluetooth-Devices/thermobeacon-ble/issues/9)) ([`1c997d1`](https://github.com/Bluetooth-Devices/thermobeacon-ble/commit/1c997d101961aaaadedd6be2a298d0fd3385944e))
+
 ## v0.4.0 (2022-11-13)
 ### Feature
 * Add support for device 0x18 ([#8](https://github.com/Bluetooth-Devices/thermobeacon-ble/issues/8)) ([`7599842`](https://github.com/Bluetooth-Devices/thermobeacon-ble/commit/7599842522f845a2a39e3ec69bc9d1d7901c9044))
