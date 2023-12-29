@@ -62,25 +62,39 @@ jobs:
   release:
     runs-on: ubuntu-latest
     environment: release
-    if: github.ref == 'refs/heads/main'
+    concurrency: release
+    permissions:
+      id-token: write
+      contents: write
     needs:
       - test
       - lint
       - commitlint
 
     steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
       # Run semantic release:
       # - Update CHANGELOG.md
       # - Update version in code
       # - Create git tag
       # - Create GitHub release
       # - Publish to PyPI
-      - name: Python Semantic Release
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.head_ref || github.ref_name }}
+
+      # Do a dry run of PSR
+      - name: Test release
         uses: python-semantic-release/python-semantic-release@v8.7.0
+        if: github.ref_name != 'main'
+        with:
+          root_options: --noop
+
+      # On main branch: actual PSR + upload to PyPI & GitHub
+      - name: Release
+        uses: python-semantic-release/python-semantic-release@v8.7.0
+        id: release
+        if: github.ref_name == 'main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
