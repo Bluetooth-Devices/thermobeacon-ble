@@ -2,6 +2,13 @@
 
 
 
+## v0.6.2 (2023-12-29)
+
+### Fix
+
+* fix: release process (#18) ([`3cb2118`](https://github.com/Bluetooth-Devices/thermobeacon-ble/commit/3cb21182898235346178b9ff8b3a941aaffd69e0))
+
+
 ## v0.6.1 (2023-12-29)
 
 ### Chore

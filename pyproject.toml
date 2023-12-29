@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "thermobeacon-ble"
-version = "0.6.1"
+version = "0.6.2"
 description = "Parser for Thermobeacon devices"
 authors = ["J. Nick Koston <nick@koston.org>"]
 license = "MIT"
