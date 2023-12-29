@@ -49,7 +49,6 @@ branch = "main"
 version_toml = ["pyproject.toml:tool.poetry.version"]
 version_variables = [
     "src/thermobeacon_ble/__init__.py:__version__",
-    "docs/conf.py:release",
 ]
 build_command = "pip install poetry && poetry build"
 
