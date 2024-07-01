@@ -1,4 +1,5 @@
 """Parser for ThermoBeacon BLE advertisements."""
+
 from __future__ import annotations
 
 from sensor_state_data import (
