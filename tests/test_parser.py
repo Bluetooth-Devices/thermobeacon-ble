@@ -30,6 +30,18 @@ MFR_20 = BluetoothServiceInfo(
     source="local",
 )
 
+MFR_48 = BluetoothServiceInfo(
+    name="ThermoBeacon",
+    address="aa:bb:cc:dd:ee:ff",
+    rssi=-60,
+    service_data={},
+    manufacturer_data={
+        48: b"\x00\x00\x8b\x01\x00\x00]D\xd6\x0bY\x01Y\x03D\x00\x0c\x00"
+    },
+    service_uuids=["0000fff0-0000-1000-8000-00805f9b34fb"],
+    source="local",
+)
+
 MFR_22 = BluetoothServiceInfo(
     name="ThermoBeacon",
     address="aa:bb:cc:dd:ee:ff",
@@ -241,6 +253,91 @@ def test_mfr_27():
                 device_key=DeviceKey(key="signal_strength", device_id=None),
                 name="Signal " "Strength",
                 native_value=-44,
+            ),
+        },
+        binary_entity_descriptions={
+            DeviceKey(key="occupancy", device_id=None): BinarySensorDescription(
+                device_key=DeviceKey(key="occupancy", device_id=None),
+                device_class=BinarySensorDeviceClass.OCCUPANCY,
+            )
+        },
+        binary_entity_values={
+            DeviceKey(key="occupancy", device_id=None): BinarySensorValue(
+                device_key=DeviceKey(key="occupancy", device_id=None),
+                name="Occupancy",
+                native_value=False,
+            )
+        },
+        events={},
+    )
+
+
+def test_mfr_48():
+    parser = ThermoBeaconBluetoothDeviceData()
+    update = parser.update(MFR_48)
+    assert update == SensorUpdate(
+        title="Smart hygrometer EEFF",
+        devices={
+            None: SensorDeviceInfo(
+                name="Smart hygrometer EEFF",
+                model=48,
+                manufacturer="ThermoBeacon",
+                sw_version=None,
+                hw_version=None,
+            )
+        },
+        entity_descriptions={
+            DeviceKey(key="battery", device_id=None): SensorDescription(
+                device_key=DeviceKey(key="battery", device_id=None),
+                device_class=SensorDeviceClass.BATTERY,
+                native_unit_of_measurement=Units.PERCENTAGE,
+            ),
+            DeviceKey(key="signal_strength", device_id=None): SensorDescription(
+                device_key=DeviceKey(key="signal_strength", device_id=None),
+                device_class=SensorDeviceClass.SIGNAL_STRENGTH,
+                native_unit_of_measurement=Units.SIGNAL_STRENGTH_DECIBELS_MILLIWATT,
+            ),
+            DeviceKey(key="temperature", device_id=None): SensorDescription(
+                device_key=DeviceKey(key="temperature", device_id=None),
+                device_class=SensorDeviceClass.TEMPERATURE,
+                native_unit_of_measurement=Units.TEMP_CELSIUS,
+            ),
+            DeviceKey(key="voltage", device_id=None): SensorDescription(
+                device_key=DeviceKey(key="voltage", device_id=None),
+                device_class=SensorDeviceClass.VOLTAGE,
+                native_unit_of_measurement=Units.ELECTRIC_POTENTIAL_VOLT,
+            ),
+            DeviceKey(key="humidity", device_id=None): SensorDescription(
+                device_key=DeviceKey(key="humidity", device_id=None),
+                device_class=SensorDeviceClass.HUMIDITY,
+                native_unit_of_measurement=Units.PERCENTAGE,
+            ),
+        },
+        entity_values={
+            DeviceKey(key="battery", device_id=None): SensorValue(
+                device_key=DeviceKey(key="battery", device_id=None),
+                name="Battery",
+                native_value=100,
+            ),
+            DeviceKey(key="signal_strength", device_id=None): SensorValue(
+                device_key=DeviceKey(key="signal_strength", device_id=None),
+                name="Signal " "Strength",
+                native_value=-60,
+            ),
+            DeviceKey(key="temperature", device_id=None): SensorValue(
+                device_key=DeviceKey(key="temperature", device_id=None),
+                name="Temperature",
+                native_value=21.56,
+            ),
+            DeviceKey(key="voltage", device_id=None): SensorValue(
+                device_key=DeviceKey(key="voltage", device_id=None),
+                name="Voltage",
+                native_value=3.03,
+            ),
+            DeviceKey(key="humidity", device_id=None): SensorValue(
+                device_key=DeviceKey(key="humidity", device_id=None),
+                name="Humidity",
+                native_value=53.56,
             ),
         },
         binary_entity_descriptions={
