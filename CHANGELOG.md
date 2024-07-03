@@ -2,6 +2,19 @@
 
 
 
+## v0.7.0 (2024-07-03)
+
+### Chore
+
+* chore(pre-commit.ci): pre-commit autoupdate (#20)
+
+Co-authored-by: pre-commit-ci[bot] &lt;66853113+pre-commit-ci[bot]@users.noreply.github.com&gt; ([`1f37fa1`](https://github.com/Bluetooth-Devices/thermobeacon-ble/commit/1f37fa1db3e6e42def14e1303e25595de1006f73))
+
+### Feature
+
+* feat: add mappings for ws23 (#21) ([`3dca812`](https://github.com/Bluetooth-Devices/thermobeacon-ble/commit/3dca812a7d09e37cff63ac73630f0bf38779ce5e))
+
+
 ## v0.6.2 (2023-12-29)
 
 ### Fix
