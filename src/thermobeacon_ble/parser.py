@@ -30,6 +30,7 @@ class ThermoBeaconDevice:
 DEVICE_TYPES = {
     0x10: ThermoBeaconDevice("16", "Lanyard/mini hygrometer"),
     0x11: ThermoBeaconDevice("17", "Smart hygrometer"),
+    0x14: ThermoBeaconDevice("20", "Smart hygrometer"),
     0x15: ThermoBeaconDevice("21", "Smart hygrometer"),
     0x18: ThermoBeaconDevice("24", "Smart hygrometer"),
     0x1B: ThermoBeaconDevice("27", "Smart hygrometer"),
