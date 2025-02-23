@@ -105,19 +105,19 @@ BAD_DATA = BluetoothServiceInfo(
 
 def test_with_22_byte_update():
     parser = ThermoBeaconBluetoothDeviceData()
-    parser.supported(MFR_22) is True
+    assert parser.supported(MFR_22) is True
     assert parser.title == "Smart hygrometer EEFF"
 
 
 def test_supported_set_the_title():
     parser = ThermoBeaconBluetoothDeviceData()
-    parser.supported(MFR_16_LEN_20) is True
+    assert parser.supported(MFR_16_LEN_20) is True
     assert parser.title == "Lanyard/mini hygrometer EEFF"
 
 
 def test_supported_set_the_title_18_bytes():
     parser = ThermoBeaconBluetoothDeviceData()
-    parser.supported(MFR_16_LEN_18) is True
+    assert parser.supported(MFR_16_LEN_18) is True
     assert parser.title == "Lanyard/mini hygrometer EEFF"
 
 
