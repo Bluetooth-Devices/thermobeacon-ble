@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v0.8.0 (2025-02-23)
+
+### Features
+
+- Add support for model 20 ([#40](https://github.com/Bluetooth-Devices/thermobeacon-ble/pull/40),
+  [`79c369f`](https://github.com/Bluetooth-Devices/thermobeacon-ble/commit/79c369f2c39d42fd17e5df7552f2c756b995b8bf))
+
+
 ## v0.7.1 (2025-02-23)
 
 ### Bug Fixes
