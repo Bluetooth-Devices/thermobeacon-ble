@@ -1,3 +1,4 @@
+import pytest
 from bluetooth_sensor_state_data import BluetoothServiceInfo, SensorUpdate
 from sensor_state_data import (
     BinarySensorDescription,
@@ -97,6 +98,17 @@ BAD_DATA = BluetoothServiceInfo(
     service_data={},
     manufacturer_data={
         16: b"a\x00\x16\x00\x00\xac\xfa/\x0b&\x01G\x03\xa7\xe7\x12\x00\xc0"
+    },
+    service_uuids=["0000fff0-0000-1000-8000-00805f9b34fb"],
+    source="local",
+)
+BAD_DATA_2 = BluetoothServiceInfo(
+    name="ThermoBeacon",
+    address="aa:bb:cc:dd:ee:ff",
+    rssi=-60,
+    service_data={},
+    manufacturer_data={
+        16: b"\x00\x00\x16\x00\x00\xac\xfa/\x0b&\x01G\x03\xa7\xe7\x12\x00\xc0"
     },
     service_uuids=["0000fff0-0000-1000-8000-00805f9b34fb"],
     source="local",
@@ -459,9 +471,16 @@ def test_mfr_48():
     )
 
 
-def test_bad_data_ignored():
+@pytest.mark.parametrize(
+    "data",
+    [
+        BAD_DATA,
+        BAD_DATA_2,
+    ],
+)
+def test_bad_data_ignored(data: bytes) -> None:
     parser = ThermoBeaconBluetoothDeviceData()
-    update = parser.update(BAD_DATA)
+    update = parser.update(data)
     assert update == SensorUpdate(
         title="Lanyard/mini hygrometer EEFF",
         devices={

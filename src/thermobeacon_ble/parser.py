@@ -69,6 +69,9 @@ class ThermoBeaconBluetoothDeviceData(BluetoothData):
         self.set_device_name(f"{name} {short_address(service_info.address)}")
         self.set_device_manufacturer("ThermoBeacon")
         _LOGGER.debug("Parsing ThermoBeacon BLE advertisement data: %s", data)
+        if data[2] != 0x00:
+            # Not a data packet
+            return
         button_pushed = data[3] & 0x80
         xvalue = data[10:16]
 
