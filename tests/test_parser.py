@@ -18,7 +18,7 @@ def test_can_create():
     ThermoBeaconBluetoothDeviceData()
 
 
-MFR_18 = BluetoothServiceInfo(
+MFR_16_LEN_18 = BluetoothServiceInfo(
     name="ThermoBeacon",
     address="aa:bb:cc:dd:ee:ff",
     rssi=-60,
@@ -30,7 +30,7 @@ MFR_18 = BluetoothServiceInfo(
     source="local",
 )
 
-MFR_20 = BluetoothServiceInfo(
+MFR_16_LEN_20 = BluetoothServiceInfo(
     name="ThermoBeacon",
     address="aa:bb:cc:dd:ee:ff",
     rssi=-60,
@@ -111,19 +111,19 @@ def test_with_22_byte_update():
 
 def test_supported_set_the_title():
     parser = ThermoBeaconBluetoothDeviceData()
-    parser.supported(MFR_20) is True
+    parser.supported(MFR_16_LEN_20) is True
     assert parser.title == "Lanyard/mini hygrometer EEFF"
 
 
 def test_supported_set_the_title_18_bytes():
     parser = ThermoBeaconBluetoothDeviceData()
-    parser.supported(MFR_18) is True
+    parser.supported(MFR_16_LEN_18) is True
     assert parser.title == "Lanyard/mini hygrometer EEFF"
 
 
 def test_20_byte_update():
     parser = ThermoBeaconBluetoothDeviceData()
-    update = parser.update(MFR_20)
+    update = parser.update(MFR_16_LEN_20)
     assert update == SensorUpdate(
         title="Lanyard/mini hygrometer EEFF",
         devices={
@@ -207,7 +207,7 @@ def test_20_byte_update():
 
 def test_18_byte_update():
     parser = ThermoBeaconBluetoothDeviceData()
-    update = parser.update(MFR_18)
+    update = parser.update(MFR_16_LEN_18)
     assert update == SensorUpdate(
         title="Lanyard/mini hygrometer EEFF",
         devices={
