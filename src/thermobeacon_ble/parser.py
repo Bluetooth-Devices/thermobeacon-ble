@@ -73,7 +73,7 @@ class ThermoBeaconBluetoothDeviceData(BluetoothData):
     def _process_update(self, data: bytes) -> None:
         """Update from BLE advertisement data."""
         _LOGGER.debug("Parsing ThermoBeacon BLE advertisement data: %s", data)
-        if len(data) != 20:
+        if len(data) not in (18, 20):
             return
 
         button_pushed = data[3] & 0x80
