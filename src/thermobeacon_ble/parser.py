@@ -59,7 +59,8 @@ class ThermoBeaconBluetoothDeviceData(BluetoothData):
             + changed_manufacturer_data[last_id]
         )
         msg_length = len(data)
-        if msg_length not in (20, 22):
+        # 22 has a different format
+        if msg_length not in (18, 20, 22):
             return
         device_id = data[0]
         device_type = DEVICE_TYPES[device_id]
@@ -68,10 +69,6 @@ class ThermoBeaconBluetoothDeviceData(BluetoothData):
         self.set_title(f"{name} {short_address(service_info.address)}")
         self.set_device_name(f"{name} {short_address(service_info.address)}")
         self.set_device_manufacturer("ThermoBeacon")
-        self._process_update(data)
-
-    def _process_update(self, data: bytes) -> None:
-        """Update from BLE advertisement data."""
         _LOGGER.debug("Parsing ThermoBeacon BLE advertisement data: %s", data)
         if len(data) not in (18, 20):
             return
