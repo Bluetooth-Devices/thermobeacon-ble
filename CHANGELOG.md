@@ -1,6 +1,104 @@
 # CHANGELOG
 
 
+## v0.8.1 (2025-03-06)
+
+### Bug Fixes
+
+- Revert handling 18 byte data
+  ([#48](https://github.com/Bluetooth-Devices/thermobeacon-ble/pull/48),
+  [`ace5ae2`](https://github.com/Bluetooth-Devices/thermobeacon-ble/commit/ace5ae25c2f4dc362d7f625e4e4afe2e20b3272d))
+
+This reverts the check that was changed in #33 because it caused a regression in
+  https://github.com/home-assistant/core/issues/139917
+
+### Chores
+
+- **ci**: Bump python-semantic-release/python-semantic-release from 9.20.0 to 9.21.0 in the
+  github-actions group ([#44](https://github.com/Bluetooth-Devices/thermobeacon-ble/pull/44),
+  [`298a426`](https://github.com/Bluetooth-Devices/thermobeacon-ble/commit/298a426366eabea9361f5f0ffb85b71a49fc9d66))
+
+chore(ci): bump python-semantic-release/python-semantic-release
+
+Bumps the github-actions group with 1 update:
+  [python-semantic-release/python-semantic-release](https://github.com/python-semantic-release/python-semantic-release).
+
+Updates `python-semantic-release/python-semantic-release` from 9.20.0 to 9.21.0 - [Release
+  notes](https://github.com/python-semantic-release/python-semantic-release/releases) -
+  [Changelog](https://github.com/python-semantic-release/python-semantic-release/blob/master/CHANGELOG.rst)
+  -
+  [Commits](https://github.com/python-semantic-release/python-semantic-release/compare/v9.20.0...v9.21.0)
+
+--- updated-dependencies: - dependency-name: python-semantic-release/python-semantic-release
+  dependency-type: direct:production
+
+update-type: version-update:semver-minor
+
+dependency-group: github-actions ...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+
+Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
+
+- **deps**: Bump myst-parser from 1.0.0 to 3.0.1
+  ([#45](https://github.com/Bluetooth-Devices/thermobeacon-ble/pull/45),
+  [`106260a`](https://github.com/Bluetooth-Devices/thermobeacon-ble/commit/106260a44b0f47c908e2bde302af31202ee9795a))
+
+Bumps [myst-parser](https://github.com/executablebooks/MyST-Parser) from 1.0.0 to 3.0.1. - [Release
+  notes](https://github.com/executablebooks/MyST-Parser/releases) -
+  [Changelog](https://github.com/executablebooks/MyST-Parser/blob/master/CHANGELOG.md) -
+  [Commits](https://github.com/executablebooks/MyST-Parser/compare/v1.0.0...v3.0.1)
+
+--- updated-dependencies: - dependency-name: myst-parser dependency-type: direct:production
+
+update-type: version-update:semver-major ...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+
+Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
+
+- **deps**: Bump sphinx from 5.3.0 to 6.2.1
+  ([#43](https://github.com/Bluetooth-Devices/thermobeacon-ble/pull/43),
+  [`baaecb6`](https://github.com/Bluetooth-Devices/thermobeacon-ble/commit/baaecb68314ed7a0c2f7e30f8800856e4d7ff3a6))
+
+Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
+
+- **deps**: Bump sphinx-rtd-theme from 2.0.0 to 3.0.2
+  ([#47](https://github.com/Bluetooth-Devices/thermobeacon-ble/pull/47),
+  [`5513390`](https://github.com/Bluetooth-Devices/thermobeacon-ble/commit/5513390e1bec897ae81924e65df9ce5fd563f54e))
+
+- **deps-dev**: Bump pytest from 7.4.3 to 8.3.4
+  ([#42](https://github.com/Bluetooth-Devices/thermobeacon-ble/pull/42),
+  [`a7df929`](https://github.com/Bluetooth-Devices/thermobeacon-ble/commit/a7df9294d49860f8e9e2d0c2bc3cf32a21585838))
+
+- **deps-dev**: Bump pytest from 8.3.4 to 8.3.5
+  ([#46](https://github.com/Bluetooth-Devices/thermobeacon-ble/pull/46),
+  [`7d48f63`](https://github.com/Bluetooth-Devices/thermobeacon-ble/commit/7d48f6375cdd7b75a7af4ef26a05c277b0632e5c))
+
+Bumps [pytest](https://github.com/pytest-dev/pytest) from 8.3.4 to 8.3.5. - [Release
+  notes](https://github.com/pytest-dev/pytest/releases) -
+  [Changelog](https://github.com/pytest-dev/pytest/blob/main/CHANGELOG.rst) -
+  [Commits](https://github.com/pytest-dev/pytest/compare/8.3.4...8.3.5)
+
+--- updated-dependencies: - dependency-name: pytest dependency-type: direct:development
+
+update-type: version-update:semver-patch ...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+
+Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
+
+- **pre-commit.ci**: Pre-commit autoupdate
+  ([#41](https://github.com/Bluetooth-Devices/thermobeacon-ble/pull/41),
+  [`f90b502`](https://github.com/Bluetooth-Devices/thermobeacon-ble/commit/f90b502079c9cff4266680c1af71836fa0ef522b))
+
+updates: - [github.com/commitizen-tools/commitizen: v4.2.1 →
+  v4.4.1](https://github.com/commitizen-tools/commitizen/compare/v4.2.1...v4.4.1) -
+  [github.com/PyCQA/isort: 6.0.0 → 6.0.1](https://github.com/PyCQA/isort/compare/6.0.0...6.0.1)
+
+Co-authored-by: pre-commit-ci[bot] <66853113+pre-commit-ci[bot]@users.noreply.github.com>
+
+
 ## v0.8.0 (2025-02-23)
 
 ### Features
