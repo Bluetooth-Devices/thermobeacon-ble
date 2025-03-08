@@ -125,6 +125,17 @@ BAD_DATA_2 = BluetoothServiceInfo(
     service_uuids=["0000fff0-0000-1000-8000-00805f9b34fb"],
     source="local",
 )
+BAD_DATA_3 = BluetoothServiceInfo(
+    name="ThermoBeacon",
+    address="aa:bb:cc:dd:ee:ff",
+    rssi=-60,
+    service_data={},
+    manufacturer_data={
+        16: b"\x00\x00)\x06\x00\x00Eo\xab\x01\n\x00\x00\x00\xa2\x01\x98\x00\x00\x00"
+    },
+    service_uuids=["0000fff0-0000-1000-8000-00805f9b34fb"],
+    source="local",
+)
 
 
 def test_with_22_byte_update():
@@ -573,6 +584,7 @@ def test_mfr_20():
     [
         BAD_DATA,
         BAD_DATA_2,
+        BAD_DATA_3,
     ],
 )
 def test_bad_data_ignored(data: bytes) -> None:
