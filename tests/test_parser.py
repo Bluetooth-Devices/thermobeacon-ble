@@ -1,5 +1,10 @@
+from uuid import UUID
+
 import pytest
-from bluetooth_sensor_state_data import BluetoothServiceInfo, SensorUpdate
+from bleak.backends.device import BLEDevice
+from bluetooth_data_tools import monotonic_time_coarse
+from bluetooth_sensor_state_data import SensorUpdate
+from habluetooth import BluetoothServiceInfoBleak
 from sensor_state_data import (
     BinarySensorDescription,
     BinarySensorDeviceClass,
@@ -15,11 +20,44 @@ from sensor_state_data import (
 from thermobeacon_ble.parser import ThermoBeaconBluetoothDeviceData
 
 
+def make_bluetooth_service_info(  # noqa: PLR0913
+    name: str,
+    manufacturer_data: dict[int, bytes],
+    service_uuids: list[str],
+    address: str,
+    rssi: int,
+    service_data: dict[UUID, bytes],
+    source: str,
+    tx_power: int = 0,
+    raw: bytes | None = None,
+) -> BluetoothServiceInfoBleak:
+    return BluetoothServiceInfoBleak(
+        name=name,
+        manufacturer_data=manufacturer_data,
+        service_uuids=service_uuids,
+        address=address,
+        rssi=rssi,
+        service_data=service_data,
+        source=source,
+        device=BLEDevice(
+            name=name,
+            address=address,
+            details={},
+            rssi=rssi,
+        ),
+        time=monotonic_time_coarse(),
+        advertisement=None,
+        connectable=True,
+        tx_power=tx_power,
+        raw=raw,
+    )
+
+
 def test_can_create():
     ThermoBeaconBluetoothDeviceData()
 
 
-MFR_16_LEN_18 = BluetoothServiceInfo(
+MFR_16_LEN_18 = make_bluetooth_service_info(
     name="ThermoBeacon",
     address="aa:bb:cc:dd:ee:ff",
     rssi=-60,
@@ -31,7 +69,7 @@ MFR_16_LEN_18 = BluetoothServiceInfo(
     source="local",
 )
 
-MFR_16_LEN_20 = BluetoothServiceInfo(
+MFR_16_LEN_20 = make_bluetooth_service_info(
     name="ThermoBeacon",
     address="aa:bb:cc:dd:ee:ff",
     rssi=-60,
@@ -43,7 +81,7 @@ MFR_16_LEN_20 = BluetoothServiceInfo(
     source="local",
 )
 
-MFR_48 = BluetoothServiceInfo(
+MFR_48 = make_bluetooth_service_info(
     name="ThermoBeacon",
     address="aa:bb:cc:dd:ee:ff",
     rssi=-60,
@@ -54,8 +92,18 @@ MFR_48 = BluetoothServiceInfo(
     service_uuids=["0000fff0-0000-1000-8000-00805f9b34fb"],
     source="local",
 )
+MFR_48_RAW = make_bluetooth_service_info(
+    name="ThermoBeacon",
+    address="aa:bb:cc:dd:ee:ff",
+    rssi=-60,
+    service_data={},
+    manufacturer_data={48: b""},
+    service_uuids=["0000fff0-0000-1000-8000-00805f9b34fb"],
+    source="local",
+    raw=b"\x15\xff\x30\x00\x00\x00\x8b\x01\x00\x00\x5d\x44\xd6\x0b\x59\x01\x59\x03\x44\x00\x0c\x00",
+)
 
-MFR_20 = BluetoothServiceInfo(
+MFR_20 = make_bluetooth_service_info(
     name="ThermoBeacon",
     address="aa:bb:cc:dd:ee:ff",
     rssi=-60,
@@ -67,7 +115,7 @@ MFR_20 = BluetoothServiceInfo(
     source="local",
 )
 
-MFR_22 = BluetoothServiceInfo(
+MFR_22 = make_bluetooth_service_info(
     name="ThermoBeacon",
     address="aa:bb:cc:dd:ee:ff",
     rssi=-60,
@@ -79,7 +127,7 @@ MFR_22 = BluetoothServiceInfo(
     source="local",
 )
 
-MFR_24 = BluetoothServiceInfo(
+MFR_24 = make_bluetooth_service_info(
     name="ThermoBeacon",
     address="aa:bb:cc:dd:ee:ff",
     rssi=-60,
@@ -91,7 +139,7 @@ MFR_24 = BluetoothServiceInfo(
     source="local",
 )
 
-MFR_27 = BluetoothServiceInfo(
+MFR_27 = make_bluetooth_service_info(
     name="ThermoBeacon",
     address="aa:bb:cc:dd:ee:ff",
     service_data={},
@@ -103,7 +151,7 @@ MFR_27 = BluetoothServiceInfo(
     source="local",
 )
 
-BAD_DATA = BluetoothServiceInfo(
+BAD_DATA = make_bluetooth_service_info(
     name="ThermoBeacon",
     address="aa:bb:cc:dd:ee:ff",
     rssi=-60,
@@ -114,7 +162,7 @@ BAD_DATA = BluetoothServiceInfo(
     service_uuids=["0000fff0-0000-1000-8000-00805f9b34fb"],
     source="local",
 )
-BAD_DATA_2 = BluetoothServiceInfo(
+BAD_DATA_2 = make_bluetooth_service_info(
     name="ThermoBeacon",
     address="aa:bb:cc:dd:ee:ff",
     rssi=-60,
@@ -125,7 +173,7 @@ BAD_DATA_2 = BluetoothServiceInfo(
     service_uuids=["0000fff0-0000-1000-8000-00805f9b34fb"],
     source="local",
 )
-BAD_DATA_3 = BluetoothServiceInfo(
+BAD_DATA_3 = make_bluetooth_service_info(
     name="ThermoBeacon",
     address="aa:bb:cc:dd:ee:ff",
     rssi=-60,
@@ -412,6 +460,91 @@ def test_mfr_27():
 def test_mfr_48():
     parser = ThermoBeaconBluetoothDeviceData()
     update = parser.update(MFR_48)
+    assert update == SensorUpdate(
+        title="Smart hygrometer EEFF",
+        devices={
+            None: SensorDeviceInfo(
+                name="Smart hygrometer EEFF",
+                model=48,
+                manufacturer="ThermoBeacon",
+                sw_version=None,
+                hw_version=None,
+            )
+        },
+        entity_descriptions={
+            DeviceKey(key="battery", device_id=None): SensorDescription(
+                device_key=DeviceKey(key="battery", device_id=None),
+                device_class=SensorDeviceClass.BATTERY,
+                native_unit_of_measurement=Units.PERCENTAGE,
+            ),
+            DeviceKey(key="signal_strength", device_id=None): SensorDescription(
+                device_key=DeviceKey(key="signal_strength", device_id=None),
+                device_class=SensorDeviceClass.SIGNAL_STRENGTH,
+                native_unit_of_measurement=Units.SIGNAL_STRENGTH_DECIBELS_MILLIWATT,
+            ),
+            DeviceKey(key="temperature", device_id=None): SensorDescription(
+                device_key=DeviceKey(key="temperature", device_id=None),
+                device_class=SensorDeviceClass.TEMPERATURE,
+                native_unit_of_measurement=Units.TEMP_CELSIUS,
+            ),
+            DeviceKey(key="voltage", device_id=None): SensorDescription(
+                device_key=DeviceKey(key="voltage", device_id=None),
+                device_class=SensorDeviceClass.VOLTAGE,
+                native_unit_of_measurement=Units.ELECTRIC_POTENTIAL_VOLT,
+            ),
+            DeviceKey(key="humidity", device_id=None): SensorDescription(
+                device_key=DeviceKey(key="humidity", device_id=None),
+                device_class=SensorDeviceClass.HUMIDITY,
+                native_unit_of_measurement=Units.PERCENTAGE,
+            ),
+        },
+        entity_values={
+            DeviceKey(key="battery", device_id=None): SensorValue(
+                device_key=DeviceKey(key="battery", device_id=None),
+                name="Battery",
+                native_value=100,
+            ),
+            DeviceKey(key="signal_strength", device_id=None): SensorValue(
+                device_key=DeviceKey(key="signal_strength", device_id=None),
+                name="Signal " "Strength",
+                native_value=-60,
+            ),
+            DeviceKey(key="temperature", device_id=None): SensorValue(
+                device_key=DeviceKey(key="temperature", device_id=None),
+                name="Temperature",
+                native_value=21.56,
+            ),
+            DeviceKey(key="voltage", device_id=None): SensorValue(
+                device_key=DeviceKey(key="voltage", device_id=None),
+                name="Voltage",
+                native_value=3.03,
+            ),
+            DeviceKey(key="humidity", device_id=None): SensorValue(
+                device_key=DeviceKey(key="humidity", device_id=None),
+                name="Humidity",
+                native_value=53.56,
+            ),
+        },
+        binary_entity_descriptions={
+            DeviceKey(key="occupancy", device_id=None): BinarySensorDescription(
+                device_key=DeviceKey(key="occupancy", device_id=None),
+                device_class=BinarySensorDeviceClass.OCCUPANCY,
+            )
+        },
+        binary_entity_values={
+            DeviceKey(key="occupancy", device_id=None): BinarySensorValue(
+                device_key=DeviceKey(key="occupancy", device_id=None),
+                name="Occupancy",
+                native_value=False,
+            )
+        },
+        events={},
+    )
+
+
+def test_mfr_48_raw():
+    parser = ThermoBeaconBluetoothDeviceData()
+    update = parser.update(MFR_48_RAW)
     assert update == SensorUpdate(
         title="Smart hygrometer EEFF",
         devices={
