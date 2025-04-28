@@ -1,6 +1,53 @@
 # CHANGELOG
 
 
+## v0.9.0 (2025-04-28)
+
+### Chores
+
+- Add more data filtering tests
+  ([#49](https://github.com/Bluetooth-Devices/thermobeacon-ble/pull/49),
+  [`2fd87b2`](https://github.com/Bluetooth-Devices/thermobeacon-ble/commit/2fd87b217c40e6380f2d89eb99f28be9aa275494))
+
+- **deps**: Bump sphinx from 6.2.1 to 7.4.7
+  ([#50](https://github.com/Bluetooth-Devices/thermobeacon-ble/pull/50),
+  [`a9599db`](https://github.com/Bluetooth-Devices/thermobeacon-ble/commit/a9599dbbc2cd883c5d594d7fecad401504cea6f4))
+
+- **deps-dev**: Bump pytest-cov from 6.0.0 to 6.1.1
+  ([#53](https://github.com/Bluetooth-Devices/thermobeacon-ble/pull/53),
+  [`6dde196`](https://github.com/Bluetooth-Devices/thermobeacon-ble/commit/6dde19626c631ec425e89755c297382e090315a6))
+
+- **pre-commit.ci**: Pre-commit autoupdate
+  ([#51](https://github.com/Bluetooth-Devices/thermobeacon-ble/pull/51),
+  [`6f794a8`](https://github.com/Bluetooth-Devices/thermobeacon-ble/commit/6f794a8f197fb7de0e50e70a84a159d20d5d53e3))
+
+updates: - [github.com/PyCQA/flake8: 7.1.2 →
+  7.2.0](https://github.com/PyCQA/flake8/compare/7.1.2...7.2.0)
+
+Co-authored-by: pre-commit-ci[bot] <66853113+pre-commit-ci[bot]@users.noreply.github.com>
+
+- **pre-commit.ci**: Pre-commit autoupdate
+  ([#52](https://github.com/Bluetooth-Devices/thermobeacon-ble/pull/52),
+  [`7d8b7c0`](https://github.com/Bluetooth-Devices/thermobeacon-ble/commit/7d8b7c0cca89ccf3392e0e10603cfb59202a197f))
+
+updates: - [github.com/commitizen-tools/commitizen: v4.4.1 →
+  v4.5.0](https://github.com/commitizen-tools/commitizen/compare/v4.4.1...v4.5.0)
+
+Co-authored-by: pre-commit-ci[bot] <66853113+pre-commit-ci[bot]@users.noreply.github.com>
+
+- **pre-commit.ci**: Pre-commit autoupdate
+  ([#54](https://github.com/Bluetooth-Devices/thermobeacon-ble/pull/54),
+  [`eee2724`](https://github.com/Bluetooth-Devices/thermobeacon-ble/commit/eee2724f92c101ccad2c540b33f42f6034bafc61))
+
+Co-authored-by: pre-commit-ci[bot] <66853113+pre-commit-ci[bot]@users.noreply.github.com>
+
+### Features
+
+- Add support for raw data parsing
+  ([#55](https://github.com/Bluetooth-Devices/thermobeacon-ble/pull/55),
+  [`0a275d1`](https://github.com/Bluetooth-Devices/thermobeacon-ble/commit/0a275d1afd7e9a671ef41338a04bb44af8a1b383))
+
+
 ## v0.8.1 (2025-03-06)
 
 ### Bug Fixes
