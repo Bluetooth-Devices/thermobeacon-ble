@@ -12,9 +12,9 @@ import logging
 from dataclasses import dataclass
 from struct import unpack
 
-from bluetooth_data_tools import parse_advertisement_data_bytes, short_address
+from bluetooth_data_tools import short_address
 from bluetooth_sensor_state_data import BluetoothData
-from home_assistant_bluetooth import BluetoothServiceInfoBleak
+from habluetooth import BluetoothServiceInfoBleak
 from sensor_state_data import BinarySensorDeviceClass, SensorLibrary
 
 _LOGGER = logging.getLogger(__name__)
@@ -51,14 +51,7 @@ class ThermoBeaconBluetoothDeviceData(BluetoothData):
             return
         if not MFR_IDS.intersection(service_info.manufacturer_data):
             return
-        if service_info.raw:
-            # If we have the raw data we don't need to work out
-            # which one is the newest.
-            _, _, _, changed_manufacturer_data, _ = parse_advertisement_data_bytes(
-                service_info.raw
-            )
-        else:
-            changed_manufacturer_data = self.changed_manufacturer_data(service_info)
+        changed_manufacturer_data = self.changed_manufacturer_data(service_info)
         if not changed_manufacturer_data:
             return
         last_id = list(changed_manufacturer_data)[-1]
