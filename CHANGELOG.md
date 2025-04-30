@@ -1,6 +1,25 @@
 # CHANGELOG
 
 
+## v0.10.0 (2025-04-30)
+
+### Chores
+
+- **deps**: Bump habluetooth from 3.42.0 to 3.44.0
+  ([#57](https://github.com/Bluetooth-Devices/thermobeacon-ble/pull/57),
+  [`a667d5b`](https://github.com/Bluetooth-Devices/thermobeacon-ble/commit/a667d5b1255c91a4a181a5646b89ac32baae7960))
+
+- **deps**: Bump sphinx from 5.3.0 to 6.2.1
+  ([#56](https://github.com/Bluetooth-Devices/thermobeacon-ble/pull/56),
+  [`e8fb4b9`](https://github.com/Bluetooth-Devices/thermobeacon-ble/commit/e8fb4b95d2d56409dc604ffd077128a92331b755))
+
+### Features
+
+- Use changed_manufacturer_data from newer bluetooth-sensor-state-data
+  ([#59](https://github.com/Bluetooth-Devices/thermobeacon-ble/pull/59),
+  [`e26b405`](https://github.com/Bluetooth-Devices/thermobeacon-ble/commit/e26b4053fc04067ac4c4aa3c0e23778f3cc6c3cd))
+
+
 ## v0.9.0 (2025-04-28)
 
 ### Chores
