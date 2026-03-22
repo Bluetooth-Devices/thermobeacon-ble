@@ -76,7 +76,7 @@ class ThermoBeaconBluetoothDeviceData(BluetoothData):
         button_pushed = data[3] & 0x80
         xvalue = data[10:16]
 
-        (volt, temp16, humi16) = unpack("<HhH", xvalue)
+        volt, temp16, humi16 = unpack("<HhH", xvalue)
         temp = temp16 / 16
         humi = humi16 / 16
 
