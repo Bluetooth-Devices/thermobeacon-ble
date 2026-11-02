@@ -212,7 +212,7 @@ def test_20_byte_update():
         devices={
             None: SensorDeviceInfo(
                 name="Lanyard/mini hygrometer EEFF",
-                model=16,
+                model="16",
                 manufacturer="ThermoBeacon",
                 sw_version=None,
                 hw_version=None,
@@ -296,7 +296,7 @@ def test_18_byte_update():
         devices={
             None: SensorDeviceInfo(
                 name="Lanyard/mini hygrometer EEFF",
-                model=16,
+                model="16",
                 manufacturer="ThermoBeacon",
                 sw_version=None,
                 hw_version=None,
@@ -380,7 +380,7 @@ def test_mfr_27():
         devices={
             None: SensorDeviceInfo(
                 name="Smart hygrometer EEFF",
-                model=27,
+                model="27",
                 manufacturer="ThermoBeacon",
                 sw_version=None,
                 hw_version=None,
@@ -465,7 +465,7 @@ def test_mfr_48():
         devices={
             None: SensorDeviceInfo(
                 name="Smart hygrometer EEFF",
-                model=48,
+                model="48",
                 manufacturer="ThermoBeacon",
                 sw_version=None,
                 hw_version=None,
@@ -550,7 +550,7 @@ def test_mfr_48_raw():
         devices={
             None: SensorDeviceInfo(
                 name="Smart hygrometer EEFF",
-                model=48,
+                model="48",
                 manufacturer="ThermoBeacon",
                 sw_version=None,
                 hw_version=None,
@@ -635,7 +635,7 @@ def test_mfr_20():
         devices={
             None: SensorDeviceInfo(
                 name="Smart hygrometer EEFF",
-                model=20,
+                model="20",
                 manufacturer="ThermoBeacon",
                 sw_version=None,
                 hw_version=None,
@@ -728,7 +728,7 @@ def test_bad_data_ignored(data: bytes) -> None:
         devices={
             None: SensorDeviceInfo(
                 name="Lanyard/mini hygrometer " "EEFF",
-                model=16,
+                model="16",
                 manufacturer="ThermoBeacon",
                 sw_version=None,
                 hw_version=None,
